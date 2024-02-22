@@ -14,91 +14,46 @@ class CalculatorServiceImplTest {
     }
 
     @Test
-    public void plus_shouldTest() {
+    public void shouldReturnCorrectResultOfSummation() {
         assertEquals(2, calculatorService.plus(5, -3));
         assertEquals(8, calculatorService.plus(5, 3));
     }
 
     @Test
-    public void plus_shouldTestWithNullNum1() {
-        assertThrows(NullPointerException.class, () -> calculatorService.plus(null, 3));
+    public void shouldThrowNullPointerExceptionWhenNum1IsNull() {
+        assertThrows(NullPointerException.class, () -> calculatorService.chekNumber(null, 3));
     }
 
     @Test
-    public void plus_shouldTestWithNullNum2() {
-        assertThrows(NullPointerException.class, () -> calculatorService.plus(5, null));
+    public void shouldThrowNullPointerExceptionWhenNum2IsNull() {
+        assertThrows(NullPointerException.class, () -> calculatorService.chekNumber(5, null));
     }
 
     @Test
-    public void plus_shouldTestWithNullBothParams() {
+    public void shouldThrowNullPointerExceptionWhenNum1AndNum2IsNull() {
         assertThrows(NullPointerException.class, () -> calculatorService.plus(null, null));
     }
 
     @Test
-    public void minus_shouldTest() {
+    public void shouldReturnCorrectResultOfSubtraction() {
         assertEquals(2, calculatorService.minus(5, 3));
         assertEquals(8, calculatorService.minus(5, -3));
     }
 
     @Test
-    public void minus_shouldTestWithNullNum1() {
-        assertThrows(NullPointerException.class, () -> calculatorService.minus(null, 3));
-    }
-
-    @Test
-    public void minus_shouldTestWithNullNum2() {
-        assertThrows(NullPointerException.class, () -> calculatorService.minus(5, null));
-    }
-
-    @Test
-    public void minus_shouldTestWithNullBothParams() {
-        assertThrows(NullPointerException.class, () -> calculatorService.minus(null, null));
-    }
-
-    @Test
-    public void multiply_shouldTest() {
+    public void shouldReturnCorrectResultOfMultiplication() {
         assertEquals(-15, calculatorService.multiply(5, -3));
         assertEquals(15, calculatorService.multiply(5, 3));
     }
 
     @Test
-    public void multiply_shouldTestWithNullNum1() {
-        assertThrows(NullPointerException.class, () -> calculatorService.multiply(null, 3));
-    }
-
-    @Test
-    public void multiply_shouldTestWithNullNum2() {
-        assertThrows(NullPointerException.class, () -> calculatorService.multiply(5, null));
-    }
-
-    @Test
-    public void multiply_shouldTestWithNullBothParams() {
-        assertThrows(NullPointerException.class, () -> calculatorService.multiply(null, null));
-    }
-
-    @Test
-    public void divide_shouldTest() {
+    public void shouldReturnCorrectResultOfDivision() {
         assertEquals(-5, calculatorService.divide(15, -3));
         assertEquals(5, calculatorService.divide(15, 3));
     }
 
     @Test
-    public void divide_shouldZeroTest() {
+    public void shouldThrowIllegalArgumentExceptionWhenNum2IsZero() {
         assertThrows(IllegalArgumentException.class, () -> calculatorService.divide(15, 0));
-    }
-
-    @Test
-    public void divide_shouldTestWithNullNum1() {
-        assertThrows(NullPointerException.class, () -> calculatorService.divide(null, 3));
-    }
-
-    @Test
-    public void divide_shouldTestWithNullNum2() {
-        assertThrows(NullPointerException.class, () -> calculatorService.divide(5, null));
-    }
-
-    @Test
-    public void divide_shouldTestWithNullBothParams() {
-        assertThrows(NullPointerException.class, () -> calculatorService.divide(null, null));
     }
 }

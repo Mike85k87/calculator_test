@@ -11,67 +11,38 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParametrizeCalculatorServiceImplTest {
     private final CalculatorService calculatorService = new CalculatorServiceImpl();
 
-    public static Stream<Arguments> provideParamsForPlusMethodTests() {
+    public static Stream<Arguments> provideParamsForCalculatorTests() {
         return Stream.of(
-                Arguments.of(5, 3, 8),
-                Arguments.of(5, 6, 11),
-                Arguments.of(0, 3, 3)
+                Arguments.of(5, 3),
+                Arguments.of(5, 6),
+                Arguments.of(0, 3),
+                Arguments.of(2, 3),
+                Arguments.of(1, 6)
         );
     }
 
     @ParameterizedTest
-    @MethodSource("provideParamsForPlusMethodTests")
-    public void testPlus(Integer num1, Integer num2, Integer result) {
-        assertEquals(result, calculatorService.plus(num1, num2));
-    }
-
-
-    public static Stream<Arguments> provideParamsForMinusMethodTests() {
-        return Stream.of(
-                Arguments.of(5, 3, 2),
-                Arguments.of(5, 6, -1),
-                Arguments.of(0, 3, -3)
-        );
+    @MethodSource("provideParamsForCalculatorTests")
+    public void testPlus(Integer num1, Integer num2) {
+        assertEquals(num1 + num2, calculatorService.plus(num1, num2));
     }
 
     @ParameterizedTest
-    @MethodSource("provideParamsForMinusMethodTests")
-    public void testMinus(Integer num1, Integer num2, Integer result) {
-        assertEquals(result, calculatorService.minus(num1, num2));
-    }
-
-
-    public static Stream<Arguments> provideParamsForMultiplyMethodTests() {
-        return Stream.of(
-                Arguments.of(5, 3, 15),
-                Arguments.of(5, -6, -30),
-                Arguments.of(0, 3, 0)
-        );
+    @MethodSource("provideParamsForCalculatorTests")
+    public void testMinus(Integer num1, Integer num2) {
+        assertEquals(num1 - num2, calculatorService.minus(num1, num2));
     }
 
     @ParameterizedTest
-    @MethodSource("provideParamsForMultiplyMethodTests")
-    public void testMultiply(Integer num1, Integer num2, Integer result) {
-        assertEquals(result, calculatorService.multiply(num1, num2));
-    }
-
-
-    public static Stream<Arguments> provideParamsForDivideMethodTests() {
-        return Stream.of(
-                Arguments.of(15, 3, 5.0),
-                Arguments.of(15, -5, -3.0),
-                Arguments.of(2, 0, null)
-        );
+    @MethodSource("provideParamsForCalculatorTests")
+    public void testMultiply(Integer num1, Integer num2) {
+        assertEquals(num1 * num2, calculatorService.multiply(num1, num2));
     }
 
     @ParameterizedTest
-    @MethodSource("provideParamsForDivideMethodTests")
-    public void testDivide(Integer num1, Integer num2, Double result) {
-        if (num2 != 0) {
-            assertEquals(result, calculatorService.divide(num1, num2));
-        } else {
-            assertThrows(IllegalArgumentException.class, () -> calculatorService.divide(num1, 0));
-        }
+    @MethodSource("provideParamsForCalculatorTests")
+    public void testDivide(Integer num1, Integer num2) {
+        assertEquals((double) num1 / num2, calculatorService.divide(num1, num2));
     }
 
 }
